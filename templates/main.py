@@ -1,4 +1,3 @@
-"""The script that will actually call everything"""
 import sys
 import os
 
@@ -9,3 +8,9 @@ SCRIPT_DIR = os.path.dirname(
     )
 )
 sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
+
+import argparse
+
+parser = argparse.ArgumentParser(description='Process some integers.')
+
+args = vars(parser.parse_args())
