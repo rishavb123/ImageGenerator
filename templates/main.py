@@ -11,6 +11,13 @@ sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
 
 import argparse
 
+from util.program import Program
+
+class Main(Program):
+
+    def run(self):
+        super.run(self)
+
 parser = argparse.ArgumentParser(description='')
 
 args = vars(parser.parse_args())
