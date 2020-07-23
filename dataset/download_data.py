@@ -11,6 +11,9 @@ sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
 
 import argparse
 
-parser = argparse.ArgumentParser(description='')
+if __name__ == "__main__":
 
-args = vars(parser.parse_args())
+    parser = argparse.ArgumentParser(description='')
+    parser.add_argument('Search Query', type=str)
+
+    args = vars(parser.parse_args())
