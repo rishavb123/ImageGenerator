@@ -16,7 +16,7 @@ from util.program import Program
 class Main(Program):
 
     def run(self):
-        super.run(self)
+        super.run()
 
 if __name__ == "__main__":
 
