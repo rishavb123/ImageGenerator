@@ -18,6 +18,8 @@ class Main(Program):
     def run(self):
         super.run(self)
 
-parser = argparse.ArgumentParser(description='')
+if __name__ == "__main__":
 
-args = vars(parser.parse_args())
+    parser = argparse.ArgumentParser(description='')
+
+    args = vars(parser.parse_args())
