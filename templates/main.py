@@ -23,3 +23,5 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='')
 
     args = vars(parser.parse_args())
+
+    Main(args).run()
