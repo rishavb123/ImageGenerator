@@ -30,9 +30,12 @@ class ProgressBar:
         print('[' + PROGRESS_BAR['positive'] * progress + PROGRESS_BAR['negative'] * (PROGRESS_BAR['width'] - progress) + ']', str(self.i), '/', str(self.length), 'Time Elapsed:', str(datetime.timedelta(seconds=t)), 'Estimated Time Remaining:', str(datetime.timedelta(seconds=r)), end='\r')
 
     def increment(self):
-        if self.done: return
+        if self.done: 
+            return True
         self.i += 1
         self.show()
         if self.i >= self.length:
             self.done = True
             print("\nFinished in", str(datetime.timedelta(seconds=int(time.time() - self.init_time))))
+            return True
+        return False
