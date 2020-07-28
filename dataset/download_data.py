@@ -65,7 +65,6 @@ class DownloadImages(Program):
                 cv2.imwrite('../data/raw/{}/{}/img_{}_{}.png'.format(search_query, folder, i, int(time.time())), img)
             except:
                 err_idx.append(i)
-            progress_bar.show()
             if progress_bar.increment(): break
         
         # print('Error Indexes:', err_idx)
