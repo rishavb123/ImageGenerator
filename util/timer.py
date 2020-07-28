@@ -20,6 +20,9 @@ class Timer(object):
     def read(self):
         return self.elapsed_time
 
+    def reset(self):
+        self.elapsed_time = 0
+
     @staticmethod
     def s_to_hms(s):
         m, s = divmod(s, 60)
