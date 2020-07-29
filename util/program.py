@@ -7,6 +7,11 @@ class Program:
         self.args = args
         self.process = Process(target=self.run)
         self.ran = False
+        self.should_log = 'log' not in args or args['log']
+
+    def log(self, *args, **kwargs):
+        if self.should_log:
+            print(*args, **kwargs)
 
     def run(self):
         self.ran = True
