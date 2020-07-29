@@ -60,7 +60,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='')
 
-    parser.add_argument('--query', type=str, default='sunset')
+    parser.add_argument('-q', '--query', type=str, default='sunset', help='The search query used to find the images')
 
     args = vars(parser.parse_args())
 
