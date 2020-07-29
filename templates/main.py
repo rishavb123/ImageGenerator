@@ -18,7 +18,6 @@ class Main(Program):
 
     def run(self):
         super().run()
-        print(self.args)
 
 if __name__ == "__main__":
 
