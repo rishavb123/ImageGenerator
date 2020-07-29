@@ -10,8 +10,6 @@ SCRIPT_DIR = os.path.dirname(
 sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
 
 import argparse
-import urllib.request
-import re
 import time
 import cv2
 import flickrapi
@@ -40,23 +38,8 @@ class DownloadImages(Program):
         if not os.path.exists('../data/raw/{}/{}'.format(search_query, folder)):
             os.mkdir('../data/raw/{}/{}'.format(search_query, folder))
 
-        # page = urllib.request.urlopen('https://www.flickr.com/search/?text={}&view_all=1&media=photos'.format(search_query.replace(' ', '%20')))
-        # soup = BeautifulSoup(page, 'html.parser')
-        # img_divs = soup.findAll("div", {"class": "photo-list-photo-view"})
-        # img_styles = [div['style'] for div in img_divs[:num_of_images]]
-        # progress_bar = ProgressBar(len(img_styles), log=self.log)
-        # urls = [re.findall('url\((.*?)\)', style) for style in img_styles]
-        # for i in range(len(urls)):
-        #     url = 'https:' + urls[i][0]
-        #     img = download_image_from_url(url)
-        #     cv2.imwrite('../data/raw/{}/{}/img_{}_{}.png'.format(search_query, folder, i, int(time.time())), img)
-        #     progress_bar.show()
-        #     progress_bar.increment()
-
         photos = flickr.walk(text=search_query, tag_mode='all', tags=search_query, extras='url_c', per_page=num_of_images, sort='relevance')
         progress_bar = ProgressBar(num_of_images, log=self.log)
-
-        err_idx = []
 
         for i, photo in enumerate(photos):
             try:
@@ -64,11 +47,9 @@ class DownloadImages(Program):
                 img = download_image_from_url(url)
                 cv2.imwrite('../data/raw/{}/{}/img_{}_{}.png'.format(search_query, folder, i, int(time.time())), img)
             except:
-                err_idx.append(i)
+                pass
             if progress_bar.increment(): break
         
-        # self.log('Error Indexes:', err_idx)
-
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='')
