@@ -22,7 +22,7 @@ class Timer(object):
         self.end_time = time.time()
         self.elapsed_time += self.end_time - self.start_time
         if self.action:
-            print('STOP:', action)
+            print('STOP:', self.action)
             self.action = False
 
     def live(self):
