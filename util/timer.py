@@ -6,13 +6,24 @@ class Timer(object):
         self.start_time = time.time()
         self.end_time = self.start_time
         self.elapsed_time = 0
+        self.action = False
 
-    def start(self):
+    def start(self, action=False):
         self.start_time = time.time()
+        if action:
+            print('START:', action)
+            self.action = action
     
+    def pause(self):
+        self.end_time = time.time()
+        self.elapsed_time += self.end_time - self.start_time
+
     def stop(self):
         self.end_time = time.time()
         self.elapsed_time += self.end_time - self.start_time
+        if self.action:
+            print('STOP:', action)
+            self.action = False
 
     def live(self):
         return self.elapsed_time + time.time() - self.start_time
