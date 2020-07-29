@@ -38,6 +38,14 @@ class Timer(object):
     def reset(self):
         self.elapsed_time = 0
 
+    def time(self, f, action=False):
+        if action: print()
+        self.start(action)
+        r = f()
+        self.stop()
+        self.show()
+        return r
+
     @staticmethod
     def s_to_hms(s):
         m, s = divmod(s, 60)
