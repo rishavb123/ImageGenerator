@@ -31,6 +31,10 @@ class Timer(object):
     def read(self):
         return self.elapsed_time
 
+    def show(self):
+        h, m, s = Timer.s_to_hms(self.read())
+        print('Finished in {} hours, {} minutes, and {} seconds'.format(h, m, s))
+
     def reset(self):
         self.elapsed_time = 0
 
