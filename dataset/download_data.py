@@ -55,7 +55,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='')
 
     parser.add_argument('-q', '--query', type=str, default='sunset', help='The search query used to find the images')
-    parser.add_argument('--num-of-images', type=int, default=50000)
+    parser.add_argument('-n', '--num-of-images', type=int, default=50000, help='The number of images to attempt to download')
 
     args = vars(parser.parse_args())
 
