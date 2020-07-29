@@ -10,15 +10,18 @@ SCRIPT_DIR = os.path.dirname(
 sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
 
 import argparse
+import cv2
 
 from util.program import Program
+from util.progress_bar import ProgressBar
+from util.timer import Timer
 
 class ProcessImages(Program):
 
     def run(self):
         super().run()
         query = args['query']
-        
+
         options = os.listdir('../data/raw/' + query)
         ind = -1
         if len(options) == 1:
@@ -31,9 +34,27 @@ class ProcessImages(Program):
                 ind = input('Please enter a valid option: ')
             ind = int(ind)
         img_dir = '../data/raw/' + query + '/' + options[ind]
+        
+        img_names = os.listdir(img_dir)
+        progress_bar = ProgressBar(len(img_names))
 
-        print(img_dir)
+        if not os.path.exists('../data/preprocessed/' + query):
+            os.mkdir('../data/preprocessed/' + query)
+        if not os.path.exists('../data/preprocessed/' + query + '/' + options[ind]):
+            os.mkdir('../data/preprocessed/' + query + '/' + options[ind])
 
+        while True:
+            img = cv2.imread(img_dir + '/' + img_names[progress_bar.i])
+            dim = min(img.shape[:2])
+            if img.shape[0] == dim:
+                lrg_dim = img.shape[1]
+                img = img[:, int((lrg_dim - dim) / 2): int((lrg_dim + dim) / 2)]
+            else:
+                lrg_dim = img.shape[0]
+                img = img[int((lrg_dim - dim) / 2): int((lrg_dim + dim) / 2), :]
+            img = cv2.resize(img, (200, 200))
+            cv2.imwrite('../data/preprocessed/' + query + '/' + options[ind] + '/' + img_names[progress_bar.i], img)
+            if progress_bar.increment(): break
 
 if __name__ == "__main__":
 
