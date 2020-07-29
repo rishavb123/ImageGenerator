@@ -36,7 +36,7 @@ class ProcessImages(Program):
         img_dir = '../data/raw/' + query + '/' + options[ind]
         
         img_names = os.listdir(img_dir)
-        progress_bar = ProgressBar(len(img_names))
+        progress_bar = ProgressBar(len(img_names), self.log)
 
         if not os.path.exists('../data/preprocessed/' + query):
             os.mkdir('../data/preprocessed/' + query)

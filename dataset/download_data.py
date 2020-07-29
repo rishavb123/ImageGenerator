@@ -44,7 +44,7 @@ class DownloadImages(Program):
         # soup = BeautifulSoup(page, 'html.parser')
         # img_divs = soup.findAll("div", {"class": "photo-list-photo-view"})
         # img_styles = [div['style'] for div in img_divs[:num_of_images]]
-        # progress_bar = ProgressBar(len(img_styles))
+        # progress_bar = ProgressBar(len(img_styles), log=self.log)
         # urls = [re.findall('url\((.*?)\)', style) for style in img_styles]
         # for i in range(len(urls)):
         #     url = 'https:' + urls[i][0]
@@ -54,7 +54,7 @@ class DownloadImages(Program):
         #     progress_bar.increment()
 
         photos = flickr.walk(text=search_query, tag_mode='all', tags=search_query, extras='url_c', per_page=num_of_images, sort='relevance')
-        progress_bar = ProgressBar(num_of_images)
+        progress_bar = ProgressBar(num_of_images, log=self.log)
 
         err_idx = []
 
@@ -67,7 +67,7 @@ class DownloadImages(Program):
                 err_idx.append(i)
             if progress_bar.increment(): break
         
-        # print('Error Indexes:', err_idx)
+        # self.log('Error Indexes:', err_idx)
 
 if __name__ == "__main__":
 

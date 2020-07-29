@@ -2,16 +2,17 @@ import time
 
 class Timer(object):
 
-    def __init__(self):
+    def __init__(self, log=print):
         self.start_time = time.time()
         self.end_time = self.start_time
         self.elapsed_time = 0
         self.action = False
+        self.log = log
 
     def start(self, action=False):
         self.start_time = time.time()
         if action:
-            print('START:', action, '. . .')
+            self.log('START:', action, '. . .')
             self.action = action
     
     def pause(self):
@@ -22,7 +23,7 @@ class Timer(object):
         self.end_time = time.time()
         self.elapsed_time += self.end_time - self.start_time
         if self.action:
-            print('STOP:', self.action)
+            self.log('STOP:', self.action)
             self.action = False
 
     def live(self):
@@ -33,13 +34,13 @@ class Timer(object):
 
     def show(self):
         h, m, s = Timer.s_to_hms(self.read())
-        print('Finished in {} hours, {} minutes, and {} seconds'.format(h, m, s))
+        self.log('Finished in {} hours, {} minutes, and {} seconds'.format(h, m, s))
 
     def reset(self):
         self.elapsed_time = 0
 
     def time(self, f, action=False):
-        if action: print()
+        if action: self.log()
         self.start(action)
         r = f()
         self.stop()

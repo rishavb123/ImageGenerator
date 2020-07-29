@@ -37,7 +37,7 @@ class Main(Program):
         img_dir = '../data/preprocessed/' + query + '/' + options[ind]
         
         img_names = os.listdir(img_dir)
-        progress_bar = ProgressBar(len(img_names))
+        progress_bar = ProgressBar(len(img_names), log=self.log)
 
         if not os.path.exists('../data/loaded/' + query):
             os.mkdir('../data/loaded/{}'.format(query))
@@ -49,7 +49,7 @@ class Main(Program):
             images.append(img)
             if progress_bar.increment(): break
 
-        timer = Timer()
+        timer = Timer(log=self.log)
 
         images = timer.time(lambda:np.array(images), 'Converting to numpy array')
 
