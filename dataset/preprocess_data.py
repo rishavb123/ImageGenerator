@@ -13,6 +13,7 @@ import argparse
 import cv2
 
 from util.program import Program
+from util.args_util import str2bool
 from util.progress_bar import ProgressBar
 from util.timer import Timer
 
@@ -60,7 +61,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='')
 
-    parser.add_argument('-l', '--log', type=bool, default=True, help='Whether or not the program should log anything to the console')
+    parser.add_argument('-l', '--log', type=str2bool, default=True, help='Whether or not the program should log anything to the console')
     parser.add_argument('-q', '--query', type=str, default='sunset', help='The search query used to find the images')
 
     args = vars(parser.parse_args())
