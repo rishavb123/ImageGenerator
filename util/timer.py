@@ -11,7 +11,7 @@ class Timer(object):
     def start(self, action=False):
         self.start_time = time.time()
         if action:
-            print('START:', action)
+            print('START:', action, '. . .')
             self.action = action
     
     def pause(self):
