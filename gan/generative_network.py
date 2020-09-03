@@ -20,7 +20,7 @@ def make_generator_model(noise_dim, output_shape):
     model.add(tf.keras.layers.LeakyReLU())
 
     model.add(tf.keras.layers.Conv2DTranspose(32, (5, 5), strides=(2, 2), padding='same', use_bias=False))
-    assert model.output_shape == (None, int(output_shape[0] / 2), int(output_shape[1] / 2), 64)
+    assert model.output_shape == (None, int(output_shape[0] / 2), int(output_shape[1] / 2), 32)
     model.add(tf.keras.layers.BatchNormalization())
     model.add(tf.keras.layers.LeakyReLU())
 
