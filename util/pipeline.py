@@ -1,3 +1,5 @@
+from util.program import Program
+
 from multiprocessing import Process
 
 class Pipeline(Program):
