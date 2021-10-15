@@ -58,7 +58,7 @@ class TrainModel(Program):
         if not os.path.exists('../generated/' + query + '/' + options[ind]):
             os.mkdir('../generated/' + query + '/' + options[ind])
 
-        images = np.load(loaded_file)
+        images = np.load(loaded_file).astype(np.float32)
         img_res = images.shape[1:4]
         
         dataset = tf.data.Dataset.from_tensor_slices(images).shuffle(BUFFER_SIZE).batch(BATCH_SIZE)

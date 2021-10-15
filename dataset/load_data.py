@@ -52,7 +52,7 @@ class Main(Program):
 
         timer = Timer(log=self.log)
 
-        images = timer.time(lambda:np.array(images), 'Converting to numpy array')
+        images = timer.time(lambda:np.array(images, np.int32), 'Converting to numpy array')
 
         timer.time(lambda:np.save('../data/loaded/{}/{}'.format(query, options[ind] + '.npy'), images), 'Saving numpy array to file')
 
